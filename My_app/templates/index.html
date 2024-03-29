@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRON SECURITY</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='icon1.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <img id="logo" src="{{ url_for('static', filename='frame_212.png') }}" alt="Iron Security Logo">
+            <form id="form_security" action="/toggle_security_mode" method="post">
+                <label class="label">Security Mode:</label>
+                <div class="center">
+                    <label class="switch" for="toggle">
+                        <input type="checkbox" {% if security_mode %}checked{% endif %} id="toggle" name="security_mode" onchange="document.getElementById('form_security').submit()">
+
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+            </form>
+            <br>
+            <button onclick="window.location.href='/records'">View Records</button>
+        </div>
+
+        <div class="right_panel" style="background-image: url(/static/frame_209.png)">
+            <span class="loader"></span>
+        <img id="video_feed" src="{{ url_for('video_feed') }}">
+        <div>
+            <video id="videoPlayer" controls style="display: none;">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

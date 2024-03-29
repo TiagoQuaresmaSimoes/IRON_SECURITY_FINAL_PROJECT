@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRON SECURITY</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='icon1.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <img id="logo" src="{{ url_for('static', filename='frame_212.png') }}" alt="Iron Security Logo">
+            <ul>
+                {% for video_file in video_files %}
+                    <li>
+                        <a href="#" onclick="playVideo('{{ video_file }}');">{{ video_file }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <button onclick="window.location.href='/'">Return to Index</button>
+        </div>
+
+        <div class="right_panel" style="background-image: url(/static/frame_209.png)">
+            <video id="videoPlayer" controls style="display: none;">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        function playVideo(filename) {
+            var videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = "/play_video/" + filename;
+            videoPlayer.style.display = "block";
+        }
+    </script>
+</body>
+</html>
